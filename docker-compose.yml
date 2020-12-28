@@ -1,0 +1,36 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    image: baselamp
+    ports:
+      - 8089:80
+    volumes:
+      - ./server:/srv/app
+      - ./conf/php/php.ini:/usr/local/etc/php/php.ini
+    links:
+      - mysql
+      - redis
+    environment:
+      DB_HOST: mysql
+      DB_DATABASE: basedb
+      DB_USERNAME: app
+      DB_PASSWORD: password
+      REDIS_HOST: redis
+      SESSION_DRIVER: redis
+      CACHE_DRIVER: redis
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 33069:3306
+    environment:
+      MYSQL_DATABASE: basedb
+      MYSQL_USER: app
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+  redis:
+    image: redis:4.0-alpine
+    ports:
+      - 63799:6379

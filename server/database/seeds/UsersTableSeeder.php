@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
         'name' => env('USER_NAME'),
         'email' => env('USER_EMAIL'),
         'password' => Hash::make(env('USER_PASSWORD')),
-        'api_token' => 'IOIFJWEOIPAUHFOAISDFJIOJIjpoiahfoisdfhoihIOHOIHAFOISDHF',
+        'api_token' => env('API_TOKEN'),
     ]);
   }
 }

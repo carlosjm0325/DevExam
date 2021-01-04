@@ -13,6 +13,11 @@ services:
       - ./server:/srv/app
     depends_on: 
       - db
+    environment:
+      USER_NAME: 'admin'
+      USER_EMAIL: 'admin@email.com'
+      USER_PASSWORD: 'password'
+      API_TOKEN: 'IOIFJWEOIPAUHFOAISDFJIOJIjpoiahfoisdfhoihIOHOIHAFOISDHF'
   db:
     image: mysql:5.7
     restart: always

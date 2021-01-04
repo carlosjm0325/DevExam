@@ -24,5 +24,8 @@ COPY .docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN chown -R www-data:www-data /srv/app \
-    && a2enmod rewrite
+RUN chown -R www-data:www-data /srv/app && a2enmod rewrite
+
+copy ./migrate.sh /tmp    
+ENTRYPOINT ["/tmp/migrate.sh"]
+

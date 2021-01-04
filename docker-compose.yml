@@ -4,11 +4,15 @@ services:
     build:
       context: .
       dockerfile: .docker/Dockerfile
+      args:
+        APP_ENV: local
     image: 'altoiradevexam'
     ports:
       - 8080:80
     volumes:
       - ./server:/srv/app
+    depends_on: 
+      - db
   db:
     image: mysql:5.7
     restart: always
